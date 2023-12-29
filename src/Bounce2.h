@@ -41,8 +41,11 @@
 
 // Uncomment the following line for "BOUNCE_WITH_PROMPT_DETECTION" debounce method
 //#define BOUNCE_WITH_PROMPT_DETECTION
-
+// PMF 29/12/23 - updated to add direct support for MCP23017
 #include <inttypes.h>
+#include <MCP23017.h>
+#define MCP23017_ADDR 0x20
+
 
 /**
     @example bounce_basic.ino
@@ -209,6 +212,7 @@ public:
               A valid Arduino pin mode (INPUT, INPUT_PULLUP or OUTPUT).
 */
 	void attach(int pin, int mode);
+	void attach(MCP23017 mcpX, int pin, int mode);
 
     /**
     Attach to a pin for advanced users. Only attach the pin this way once you have previously set it up. Otherwise use attach(int pin, int mode).
@@ -254,7 +258,7 @@ protected:
 
 	uint8_t pin;
 
-	virtual bool readCurrentState() { return digitalRead(pin); }
+	virtual bool readCurrentState() { return mcpX.digitalRead(pin); }
 	virtual void setPinMode(int pin, int mode) {
 #if defined(ARDUINO_ARCH_STM32F1)
 		pinMode(pin, (WiringPinMode)mode);
@@ -263,6 +267,7 @@ protected:
 #endif
 	}
 
+  MCP23017 mcpX = MCP23017(MCP23017_ADDR);
 
 
 };
