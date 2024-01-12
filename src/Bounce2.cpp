@@ -152,7 +152,7 @@ void Bounce::attach(int pin, int mode){
 }
 
 void Bounce::attach(MCP23017 mcpX, int pin, int mode){
-    setPinMode(pin, mode);
+    //setPinMode(pin, mode);
     this->attach(pin);
     this->mcpX = mcpX;
 
