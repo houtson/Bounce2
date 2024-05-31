@@ -25,6 +25,7 @@
   Main code by Thomas O Fredericks (tof@t-o-f.info)
   Previous contributions by Eric Lowry, Jim Schimpf and Tom Harkaway
   * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ // modified by pmf for mcp i2c expander
 
 
 #ifndef Bounce2_h
